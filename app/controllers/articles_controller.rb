@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+    before_action :set_articles, only: [:edit , :update , :show , :destroy]
     # def index
     # #    render :partial => "show"
     # @article = Article.where(knowledge: 'Learning').first
@@ -7,7 +8,6 @@ class ArticlesController < ApplicationController
                 @article = Article.all
             end
             def show
-                    @article = Article.find(params[:id])
                     # render plain: @article.title
                 end
             def new
@@ -17,7 +17,6 @@ class ArticlesController < ApplicationController
                 @article =Article.find(params[:id])
             end
                 def update
-                    @article = Article.find(params[:id])
                     if @article.update(article_params)
                     flash[:notice]="Article is successfully updates"
                     redirect_to articles_path(@article)
@@ -26,7 +25,6 @@ class ArticlesController < ApplicationController
                 end
             end
             def destroy
-                 @article =Article.find(params[:id])
                  @article.destroy
                  flash[:notice]="Article is fully deleted"
                  redirect_to articles_path
@@ -43,7 +41,10 @@ class ArticlesController < ApplicationController
                     render 'new'
                 end
             end 
-                
+            private
+            def set_articles
+                @article = Article.find(params[:id])
+            end
             private 
             def article_params
                 params.require(:article).permit(:title, :description)
