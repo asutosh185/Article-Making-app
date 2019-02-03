@@ -35,6 +35,15 @@ a {
     border-top: 1px solid #eaeaea;
     padding-top: 5px;
 }
+.card-header{
+    font-weight:bold;
+    font-size:1.5em;
+}
+.card-body{
+    border-top:1px solid #eaeaea;
+    padding-top:15px;
+    padding-bottom:15px;
+}
 /* Footer */
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 section {
