@@ -1,9 +1,15 @@
-<h1>the article is successfully created</h1>
-<p>
-Title : <%= @article.title %>
-</p>
-<p>
-Description :<%= @article.description %>
-</p>
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<h2 align="center">Title:<%= @article.title %></h2>
+
+<div class="well col-xs-8 col-xs-offset-2">
+    <h4 class="center description"><strong>Description:</strong></h4>
+    <hr>
+    <h3 align="center"><%= simple_format(@article.description) %></h3>
+   <div class="article-actions">
+    <%= link_to "Edit the article", edit_article_path(@article) , class: "btn btn-primary" %>
+
+             
+    <%= link_to "Delete the article", article_path(@article), method: :delete , 
+                                data: {confirm: "Are you sure ,you want to delete the article", class: "btn btn-danger"} %>
+            <%= link_to  "View all article", article_path, class: "btn btn-xs btn-success" %>
+             </div>
+        </div>
