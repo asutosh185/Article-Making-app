@@ -1,4 +1,9 @@
 <h1 align="center"> All listing page</h1>
-  
+  <div class="pagination">
+      <%= will_paginate %>
+  </div>
   <%= render 'article', obj: @articles %>
+  <div class="pagination">
+      <%= will_paginate %>
+  </div>
 
