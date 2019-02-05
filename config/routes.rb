@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'articles/index'
+  
 
  root 'welcome#home'
   get 'about', to: 'welcome#about'

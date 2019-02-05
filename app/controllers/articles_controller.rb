@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
     # @article = Article.where(knowledge: 'Learning').first
     # end
             def index 
-                @article = Article.all
+                @articles = Article.all
             end
             def show
                     # render plain: @article.title
