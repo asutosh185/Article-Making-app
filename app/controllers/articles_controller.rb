@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
     before_action :set_articles, only: [:edit , :update , :show , :destroy]
+    before_action :require_user, except: [:index, :show]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
     # def index
     # #    render :partial => "show"
     # @article = Article.where(knowledge: 'Learning').first
@@ -31,7 +33,7 @@ class ArticlesController < ApplicationController
             end
             def create
                 @article = Article.new(article_params)
-                @article.user = User.first
+                @article.user = current_user
                 if @article.save
                     #do something
                     flash[:success] ="Article is successfully created"
@@ -43,6 +45,12 @@ class ArticlesController < ApplicationController
             private
             def set_articles
                 @article = Article.find(params[:id])
+            end
+            def require_same_user
+                if current_user != @article.user
+                    flash[:danger] = "you can only edit or delete your own article"
+                    redirect_to root_path
+                end
             end
             private 
             def article_params
